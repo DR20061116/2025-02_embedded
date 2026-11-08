@@ -1,0 +1,86 @@
+{
+  "version": "3.0",
+  "serial": {
+    "baud": "115200",
+    "dataBits": "8",
+    "stopBits": "1",
+    "parity": "none"
+  },
+  "chart": {
+    "enable": false,
+    "legends": "",
+    "maxPoints": "500"
+  },
+  "protocol": {
+    "start": "$",
+    "end": "#",
+    "sep": ","
+  },
+  "rx": {
+    "hex": false,
+    "autoScroll": true
+  },
+  "tx": {
+    "timerEnable": false,
+    "interval": "1000",
+    "addCRLF": true,
+    "hex": false
+  },
+  "commands": [
+    {
+      "cmd": "AT+RST",
+      "remark": "0. 模块复位 (建议盲发不等待回复)",
+      "active": true
+    },
+    {
+      "cmd": "AT",
+      "remark": "1. 模块测试与握手",
+      "active": false
+    },
+    {
+      "cmd": "AT+CWMODE=1",
+      "remark": "2. 设置 Station 模式",
+      "active": false
+    },
+    {
+      "cmd": "AT+CWJAP=\"DREAM\",\"20061116\"",
+      "remark": "3. 连接 WiFi",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTUSERCFG=0,1,\"OLD\",\"HIH5Gb1Urm\",\"version=2018-10-31&res=products%2FHIH5Gb1Urm%2Fdevices%2FOLD&et=1811857860&method=md5&sign=VQxPVZMbRALTt5OOQyUK4w%3D%3D\",0,0,\"\"",
+      "remark": "4. 配置 MQTT 用户信息",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTCONN=0,\"mqtts.heclouds.com\",1883,1",
+      "remark": "5. 连接 OneNet MQTT 服务器",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTSUB=0,\"$sys/HIH5Gb1Urm/OLD/thing/property/post/reply\",0",
+      "remark": "6. 订阅属性上报 Reply 主题",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTPUB=0,\"$sys/HIH5Gb1Urm/OLD/thing/property/post\",\"{\\\"id\\\":\\\"123\\\"\\,\\\"version\\\":\\\"1.0\\\"\\,\\\"params\\\":{\\\"current_temp\\\":{\\\"value\\\":20.3}}}\",0,0",
+      "remark": "7. 上报物模型数据",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTSUB=0,\"$sys/HIH5Gb1Urm/OLD/thing/property/set\",0",
+      "remark": "8. 订阅属性设置主题 (接收云端下发)",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTPUB=0,\"$sys/HIH5Gb1Urm/OLD/thing/property/set_reply\",\"{\\\"id\\\":\\\"6\\\"\\,\\\"code\\\":200\\,\\\"msg\\\":\\\"success\\\"}\",0,0",
+      "remark": "9. 回复云端属性设置 (返回成功)",
+      "active": false
+    },
+    {
+      "cmd": "AT+MQTTCLEAN=0",
+      "remark": "10. 断开 MQTT 连接",
+      "active": false
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "环境数据监测"
+			}
+		},
+		{
+		      "path": "pages/envHistory/envHistory",
+		      "style": {
+		        "navigationBarTitleText": "历史数据"
+		      }
+		},
+		{
+			"path": "pages/historyData/historyData",
+			"style": {
+				"navigationBarTitleText": "历史数据"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

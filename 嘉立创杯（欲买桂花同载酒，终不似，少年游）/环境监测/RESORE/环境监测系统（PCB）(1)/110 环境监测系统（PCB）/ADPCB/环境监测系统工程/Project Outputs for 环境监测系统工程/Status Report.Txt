@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [环境监测系统工程.PrjPcb]
+   Generated File[环境监测系统PCB-RoundHoles.TXT]
+   Generated File[环境监测系统PCB-SlotHoles.TXT]
+   Generated File[环境监测系统PCB.LDP]
+   Generated File[环境监测系统PCB.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 11:41:25 On 2025/12/24

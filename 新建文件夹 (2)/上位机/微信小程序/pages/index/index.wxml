@@ -1,0 +1,162 @@
+<!-- index.wxml -->
+<view class="page-container">
+  <!-- 头部天气（不动） -->
+  <view class="header-container">
+    <view class="header-1">
+      <view>空气质量</view>
+      <view>气温</view>
+      <view>陕西-西安市</view>
+    </view>
+    <view class="header-2">
+      <view>34优</view>
+      <view>26℃</view>
+      <view>晴朗</view>
+    </view>
+    <view class="header-3">
+      <view>晴空万里，温度适宜，注意温度</view>
+    </view>
+  </view>
+
+  <!-- 中间数据 -->
+  <view class="data-container">
+    <!-- 设备状态 -->
+    <view class="data-item device-status">
+      <image src="/图片/设备状态.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">设备状态</view>
+        <view class="data-value" wx:if="{{deviceStatusLog.data.list[0].status == 1}}">在线</view>
+        <view class="data-value" wx:elif="{{deviceStatusLog.data.list[0].status != 1}}" style="color: red;">离线</view>
+      </view>
+    </view>
+
+    <!-- 传感器状态 -->
+    <view class="data-item sensor-status">
+      <image src="/图片/传感器.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">传感器状态</view>
+        <view class="data-value">正常</view>
+      </view>
+    </view>
+
+    <!-- 环境湿度 -->
+    <view class="data-item env_humidity">
+      <image src="/图片/env_humidity.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">环境湿度</view>
+        <view class="data-value" style="color: {{deviceColorMap.env_humidity}}">{{deviceValueMap.env_humidity}} %RH</view>
+      </view>
+    </view>
+
+    <!-- 环境温度 -->
+    <view class="data-item env_temp">
+      <image src="/图片/湿度.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">环境温度</view>
+        <view class="data-value" style="color: {{deviceColorMap.env_temp}}">{{deviceValueMap.env_temp}} ℃</view>
+      </view>
+    </view>
+
+    <!-- 甲烷浓度 -->
+    <view class="data-item ch4_concent">
+      <image src="/图片/ch4.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">甲烷浓度</view>
+        <view class="data-value" style="color: {{deviceColorMap.ch4_concent}}">{{deviceValueMap.ch4_concent}} %</view>
+      </view>
+    </view>
+
+    <!-- 一氧化碳浓度 -->
+    <view class="data-item co">
+      <image src="/图片/co.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">一氧化碳</view>
+        <view class="data-value" style="color: {{deviceColorMap.co}}">{{deviceValueMap.co}} ppm</view>
+      </view>
+    </view>
+
+    <!-- 二氧化碳浓度 -->
+    <view class="data-item co2">
+      <image src="/图片/co2.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">二氧化碳</view>
+        <view class="data-value" style="color: {{deviceColorMap.co2}}">{{deviceValueMap.co2}} ppm</view>
+      </view>
+    </view>
+
+    <!-- PM2.5浓度 -->
+    <view class="data-item pm2_5">
+      <image src="/图片/pm25.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">PM2.5</view>
+        <view class="data-value" style="color: {{deviceColorMap.pm2_5}}">{{deviceValueMap.pm2_5}} μg/m³</view>
+      </view>
+    </view>
+
+    <!-- 健康评分 -->
+    <view class="data-item health_score">
+      <image src="/图片/health.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">健康评分</view>
+        <view class="data-value" style="color: {{deviceColorMap.health_score}}">{{deviceValueMap.health_score}} 分</view>
+      </view>
+    </view>
+
+    <!-- 输出电流 -->
+    <view class="data-item output_current">
+      <image src="/图片/current.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">输出电流</view>
+        <view class="data-value" style="color: {{deviceColorMap.output_current}}">{{deviceValueMap.output_current}} A</view>
+      </view>
+    </view>
+
+    <!-- 输出电压 -->
+    <view class="data-item output_voltage">
+      <image src="/图片/voltage.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">输出电压</view>
+        <view class="data-value" style="color: {{deviceColorMap.output_voltage}}">{{deviceValueMap.output_voltage}} V</view>
+      </view>
+    </view>
+
+    <!-- 运行时长 -->
+    <view class="data-item runtime_hours">
+      <image src="/图片/runtime.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">运行时长</view>
+        <view class="data-value" style="color: {{deviceColorMap.runtime_hours}}">{{deviceValueMap.runtime_hours}} 小时</view>
+      </view>
+    </view>
+
+    <!-- 功率器件温度 -->
+    <view class="data-item device_temp">
+      <image src="/图片/device_temp.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">器件温度</view>
+        <view class="data-value" style="color: {{deviceColorMap.device_temp}}">{{deviceValueMap.device_temp}} ℃</view>
+      </view>
+    </view>
+
+    <!-- LED开关（原灯1） -->
+    <view class="data-item LED">
+      <image src="/图片/LED.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">LED灯</view>
+        <view class="data-value">
+          <switch checked="{{deviceValueMap.LED}}" bindchange="onenet_set_device_property" data-param="LED" color="#3d77ff"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 蜂鸣器开关（原继电器） -->
+    <view class="data-item BUZZER">
+      <image src="/图片/buzzer.png" class="data-picture"/>
+      <view class="data-text">
+        <view class="data-title">蜂鸣器报警</view>
+        <view class="data-value">
+          <switch checked="{{deviceValueMap.BUZZER}}" bindchange="onenet_set_device_property" data-param="BUZZER" color="#3d77ff"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
